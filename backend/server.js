@@ -8,10 +8,14 @@ dotenv.config();
 const PORT = process.env.PORT || 5000;
 const app = express();
 
-app.use(express.urlencoded({ extended: true }));
+// app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 
 const __dirname = path.resolve();
+
+// singular -id- create, read, update, delete
+app.use("/api/product", ProductRoutes);
+
 if (process.env.NODE_ENV === "production") {
 	app.use(express.static(path.join(__dirname, "/frontend/dist")));
 
@@ -19,8 +23,6 @@ if (process.env.NODE_ENV === "production") {
 		res.sendFile(path.resolve(__dirname, "frontend", "dist", "index.html"));
 	});
 }
-// singular -id- create, read, update, delete
-app.use("/api/product", ProductRoutes);
 
 app.listen(PORT, () => {
 	connectDB();
