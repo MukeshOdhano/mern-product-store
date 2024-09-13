@@ -72,6 +72,7 @@ export const updateProduct = async (req, res) => {
 		console.log("ERROR in PUT: ", err.message);
 	}
 };
+
 export const deleteProduct = async (req, res) => {
 	const { id } = req.params;
 	try {
